@@ -3,15 +3,16 @@ Function.__proto__.log = function () {
 };
 
 Function.__proto__.delay = function (delay) {
-  return () => setTimeout(this, delay);
+  const thisFunc = this;
+  return (...args) => setTimeout(() => thisFunc(...args), delay);
 };
 
-const someFunc = () => {
-  return console.log(3);
+const someFunc = function () {
+  return console.log(arguments);
 };
 
 someFunc.log();
 
 const someFuncWithDelay = someFunc.delay(1000);
 
-someFuncWithDelay();
+someFuncWithDelay(2, 3, 4);
