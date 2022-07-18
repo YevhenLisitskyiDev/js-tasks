@@ -3,8 +3,7 @@ Function.__proto__.log = function () {
 };
 
 Function.__proto__.delay = function (delay) {
-  const thisFunc = this;
-  return (...args) => setTimeout(() => thisFunc(...args), delay);
+  return (...args) => setTimeout(() => this(...args), delay);
 };
 
 const someFunc = function () {
